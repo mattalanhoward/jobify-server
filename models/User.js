@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const UserSchema = new Schema({
+import validator from "validator";
+
+const UserSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: [true, "Please provide name"],
