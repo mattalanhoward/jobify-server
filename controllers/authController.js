@@ -1,10 +1,21 @@
 import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
+import { BadRequestError } from "../errors/index.js";
 
 //Don't need try / catch because we are using express-async-errors to catch errors
 const register = async (req, res, next) => {
-	const user = await User.create(req.body);
-	res.status(StatusCode.OK).json({ user });
+	const { name, email, password } = req.body;
+	if (!name || !email || !password) {
+		throw new BadRequestError("Please provide all values.");
+	}
+
+	const userAlreadyExists = await User.findOne({ email });
+	if (userAlreadyExists) {
+		throw new BadRequestError("Email is already registered");
+	}
+
+	const user = await User.create({ name, email, password });
+	res.status(StatusCodes.OK).json({ user });
 };
 
 const login = async (req, res) => {
