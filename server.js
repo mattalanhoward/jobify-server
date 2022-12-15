@@ -20,7 +20,11 @@ errorHandlerMiddleware;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-	res.send("welcome");
+	res.json("welcome");
+});
+
+app.get("/api/v1", (req, res) => {
+	res.json("API");
 });
 
 app.use("/api/v1/auth", authRoutes);
