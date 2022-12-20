@@ -15,8 +15,7 @@ import jobsRoutes from "./routes/jobsRoutes.js";
 // middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
-notFoundMiddleware;
-errorHandlerMiddleware;
+import auth from "./middleware/auth.js";
 
 //shows methods path and response in terminal
 if (process.env.NODE_ENV !== "production") {
