@@ -51,10 +51,10 @@ const login = async (req, res) => {
 		token,
 		location: user.location,
 	});
-	res.send("login user");
 };
 
 const updateUser = async (req, res) => {
+	console.log(req.user);
 	res.send("updateUser");
 };
 
