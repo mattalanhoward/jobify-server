@@ -15,7 +15,7 @@ import jobsRoutes from "./routes/jobsRoutes.js";
 // middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
-import auth from "./middleware/auth.js";
+import authenticateUser from "./middleware/auth.js";
 
 //shows methods path and response in terminal
 if (process.env.NODE_ENV !== "production") {
@@ -33,7 +33,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/jobs", jobsRoutes);
+app.use("/api/v1/jobs", authenticateUser, jobsRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
